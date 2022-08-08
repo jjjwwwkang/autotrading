@@ -134,7 +134,7 @@ while True:
                 current_price = get_current_price(i)
                 print(target_price, current_price, ma15)
                 #보유하지 않은 코인에 대해서 매수조건 따지기 
-                if target_price < current_price and ma15 < current_price and get_balance(i) < 5000.0 : #20220808
+                if target_price < current_price and ma15 < current_price and (get_balance(i[4:])*get_avgprice(i[4:])) < 5000.0:
                     #매수금액 : 잔고돈 / 매수대상코인갯수
                     krw = round(get_balance("KRW") / len(purchase),1)
                     if krw > 5000:
