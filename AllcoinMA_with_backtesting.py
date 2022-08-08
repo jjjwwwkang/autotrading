@@ -60,7 +60,7 @@ def get_balance(ticker):
     for b in balances:
         if b['currency'] == ticker:
             if b['balance'] is not None:
-                return float(b['balance'])
+                return float(b['balance']) * float(b['avg_buy_price']) #20220808수정
             else:
                 return 0
     return 0
@@ -134,7 +134,7 @@ while True:
                 current_price = get_current_price(i)
                 print(target_price, current_price, ma15)
                 #보유하지 않은 코인에 대해서 매수조건 따지기 
-                if target_price < current_price and ma15 < current_price and get_balance(i[4:]) == 0:
+                if target_price < current_price and ma15 < current_price and get_balance(i) < 5000.0 : #20220808
                     #매수금액 : 잔고돈 / 매수대상코인갯수
                     krw = round(get_balance("KRW") / len(purchase),1)
                     if krw > 5000:
